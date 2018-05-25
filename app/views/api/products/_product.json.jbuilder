@@ -2,13 +2,16 @@ json.id product.id
 json.name product.name
 json.price product.price
 json.description product.description
-json.image_url product.image_url
 json.discounted product.is_discounted?
 json.tax product.tax
 json.total product.total
 
 json.supplier do
-  json.partial! product.supplier, partial: "/api/suppliers/supplier", as: :supplier
+  json.partial! product.supplier, partial: "api/suppliers/supplier", as: :supplier
+end
+
+json.images do
+  json.array! product.images, partial: "api/images/image", as: :image
 end
 
 json.formatted do
