@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   # end
 
   has_many :orders
+  has_many :product_categories
 
   def is_discounted?
     price < 200000.00
