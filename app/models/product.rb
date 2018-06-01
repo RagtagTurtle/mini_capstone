@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  belongs_to :supplier
+  belongs_to :supplier, optional: true
   # def supplier
   #   Supplier.find_by(id: self.supplier_id)
   # end
@@ -9,9 +9,11 @@ class Product < ApplicationRecord
   #   Image.where(product_id: self.id)
   # end
 
-  has_many :orders
+  has_many :carted_products
+  has_many :orders, through: :carted_products
   has_many :product_categories
   has_many :categories, through: :product_categories
+
 
 
   def is_discounted?
