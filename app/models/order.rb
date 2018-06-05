@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   has_many :products, through: :carted_products
 
 
-  def calculate_subtotal(temp_carted_products)
+  def calculate_subtotal
     temp_subtotal = 0
     carted_products.each do |carted_product|
       temp_subtotal += carted_product.product.price * carted_product.quantity
@@ -13,7 +13,7 @@ class Order < ApplicationRecord
   end
 
   def calculate_tax
-    self.tax = @order.subtotal * 0.09
+    self.tax = subtotal * 0.09
   end
 
   def calculate_total
